@@ -1,0 +1,18 @@
+development: &default
+  adapter:  postgresql
+  database: backend_development
+  username: postgres
+  encoding: unicode
+  host: db
+  password: postgres_password
+
+test:
+  <<: *default
+  database: backend_test
+
+production:
+  <<: *default
+  database: <%= ENV["DATABASE_NAME"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>

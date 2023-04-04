@@ -1,0 +1,29 @@
+volumes:
+  postgres_data: {}
+
+services:
+  web:
+    build: .
+    tty: true
+    environment:
+      TZ: Asia/Tokyo
+    env_file:
+      - .env.development
+    volumes:
+      - type: bind
+        source: .
+        target: /backend
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13.10
+    environment:
+      POSTGRES_PASSWORD: postgres_password
+      TZ: Asia/Tokyo
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
