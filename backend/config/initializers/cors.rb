@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://host.docker.internal:9000'
+    origins 'http://localhost:9000'
 
     resource "*",
       headers: :any,
